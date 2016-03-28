@@ -15,11 +15,12 @@ private:
 
 public: // publics.
 	ArbolB();
-	// travesling
+	// busqueda
 	void inOrder();
 	bool buscar( Type &searchitem );
 	void mostrarArbol();
-	// insertion
+	void DibujarArbol();
+	// insercion
 	bool buscarEnNodo( Nodo<Type, orden> *current, const Type &target, int &position );
 	void insertar(const Type &new_entry);
 	void insertarEnRecursion( Nodo<Type, orden> *current, const Type &new_entry,Type &median,Nodo<Type, orden> * &rightchilds , bool &result );
@@ -39,6 +40,7 @@ public: // publics.
 	void combinar( Nodo<Type, orden> *current, int position );
 	
 	void imprimirArbol( Nodo<Type, orden> *current );
+	void imprimirArbol2( Nodo<Type, orden> *current, int num );
 };
 
 template <class Type, int orden> ArbolB<Type,orden>::ArbolB(){
@@ -115,7 +117,7 @@ template <class Type, int orden> void ArbolB<Type,orden>::insertarEnRecursion( N
 		else { 
 			bool fl = buscarEnNodo(current, new_entry, position);
 			if ( fl ){
-				cout<<"Item duplicado\n"; 
+				cout<<"El objeto ya se encuentra en el arbol\n"; 
 			    result = false; 
 				return; 
 			}
@@ -318,15 +320,50 @@ template <class Type, int orden> void ArbolB<Type,orden>::imprimirArbol( Nodo<Ty
 	for( i=0; i<= current->count ;i++) 
 		imprimirArbol( current->childs[i] );
 }
+
+template <class Type, int orden> void ArbolB<Type,orden>::imprimirArbol2( Nodo<Type, orden> *current, int num ){
+	
+	int i;
+	if(!current) 
+		return; 
+	//static int k = 1;
+	//cout << k <<" ";
+	//current->dibujarNodo(); 
+	//k++;
+	if(num==0){
+		current->dibujarNodoIzquierdo();
+	}
+	else if(num==1){
+		current->dibujarNodoMedio();
+	}
+	else if(num==2){
+		current->dibujarNodoDerecho();
+	}
+	else if(num==-1){
+		current->dibujarNodoRaiz();
+	}
+	for( i=0; i<= current->count ;i++) 
+		imprimirArbol2( current->childs[i] , i);
+}
+
 template <class Type, int orden> void ArbolB<Type,orden>::mostrarArbol(){
 	
 	if ( root == NULL ) 
-		cout<<"BTree is empty..."; 
+		cout<<"El Arbol esta vacio..."; 
 	else{ 
-		cout <<"PAG\tKeys Nodo\n";
+		cout <<"\tLlaves Nodo\n";
 		imprimirArbol( root );
 	} 
 }
 
+template <class Type, int orden> void ArbolB<Type,orden>::DibujarArbol(){
+	
+	if ( root == NULL ) 
+		cout<<"El Arbol esta vacio..."; 
+	else{ 
+		cout <<"\tLlaves Nodo\n";
+		imprimirArbol2( root , -1);
+	} 
+}
 
 #endif

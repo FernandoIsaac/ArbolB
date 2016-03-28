@@ -28,11 +28,13 @@ int main(){
 	bool saved = false;
 	bool created = false;
 	bool Entero = false;
+	ArbolB<int,3> hundredTree;
 	do{
 		cout<<"Ingrese opcion:"<<endl<<"1)Crear Nuevo Arbol"<<endl
 		<<"2)Agregar Llave"<<endl<<"3)Eliminar Llave"<<endl
 		<<"4)Cargar Arbol-B"<<endl<<"5)Guardar Arbol-B"<<endl
-		<<"6)Mostar Arbol Dibujado"<<endl<<"7)Mostrar Arbol En Consola"<<endl;
+		<<"6)Mostar Arbol Dibujado"<<endl<<"7)Mostrar Arbol En Consola"<<endl
+		<<"8)Arbol de 100 llaves"<<endl;
 		cin>>menu;
 		cin.ignore(256,'\n');
 		if(menu == 1){
@@ -193,15 +195,30 @@ int main(){
 				}
 			}
 		}
-	}while(menu<8);
+		if(menu == 8){
+			if(created){
+				cout<<"usted ya creo o cargo un arbol, salvelo y vuelva a corrar el programa"<<endl;
+			}
+			else{
+				cout<<"Se creara un arbol con 100 llaves"<<endl;
+				for(int i = 1; i <= 100;i++){
+					arbolEnteros.insertar(i*10);
+				}
+				cout<<"Se Creo el arbol de 100 llaves"<<endl;
+				created = true;
+				Entero = true;
+				
+			}
+		}
+	}while(menu<9);
 //	if(created)
 //		fclose(fa);
-        ArbolB<int, 3> arbol;
+  //      ArbolB<int, 3> arbol;
 	//ArbolB<int, 3> arbol2;
-        //for(int i = 1; i <=200; i++){
-              //arbol.insertar(rand()%100+1);
-	//	arbol.insertar(i*10);
-       // }
+    //    for(int i = 1; i <=25; i++){
+       //       arbol.insertar(rand()%100+1);
+//		arbol.insertar(i*10);
+  //      }
 	//arbol2 = arbol;
         /*arbol.insertar("Joel");
         arbol.insertar("Luis");
@@ -213,20 +230,21 @@ int main(){
         arbol.insertar("Rene");
         arbol.insertar("Fernando");
         arbol.insertar("Ximena");*/
-	cout<<"arbol: "<<sizeof(arbol)<<endl;	
-        arbolEnteros.mostrarArbol();
-	arbolCadenas.mostrarArbol();
+//	cout<<"arbol: "<<sizeof(arbol)<<endl;	
+//        arbolEnteros.mostrarArbol();
+//	arbolCadenas.mostrarArbol();
 //	cout<<"SIZE OF: "<<sizeof(int)<<endl;
-	cout<<"Enteros"<<sizeof(ArbolB<int,3>)<<endl;
-	cout<<"Cadenas"<<sizeof(ArbolB<string,3>)<<endl;
-	cout<<"Removiendo 160"<<endl;
-	arbol.remover(160);
-	cout<<"arbol: "<<sizeof(arbol)<<endl;	
+//	cout<<"Enteros"<<sizeof(ArbolB<int,3>)<<endl;
+//	cout<<"Cadenas"<<sizeof(ArbolB<string,3>)<<endl;
+//	cout<<"Removiendo 160"<<endl;
+//	arbol.remover(160);
+//	cout<<"arbol: "<<sizeof(arbol)<<endl;	
 	//arbol.mostrarArbol();
 	//cout<<"Removiendo 200"<<endl;
 	//arbol.remover(200);
 	//cout<<"ARBOL"<<endl;
-	//arbol.mostrarArbol();
+//	arbol.DibujarArbol();
+	//arbol.inOrder();
 	//cout<<"ARBOL 2"<<endl;	
 	//arbol2.mostrarArbol();
         return 0;
